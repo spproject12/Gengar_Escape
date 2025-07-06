@@ -166,10 +166,10 @@ void respawn(int &px, int &py) {
 }
 
 int correctStatue(int row, int col) {
-	static  vector< pair<int,int>> rightSwitches = {
+	vector< pair<int,int>> rightSwitches = {
 		{5,4}, {5,7}, {7,2}, {7,9}
 	};
-	for (size_t i = 0; i < rightSwitches.size(); i++) {
+	for (int i = 0; i < rightSwitches.size(); i++) {
 		if (rightSwitches[i].first == row && rightSwitches[i].second == col)
 			return (int)i;
 	}
