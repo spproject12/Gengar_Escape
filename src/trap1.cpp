@@ -158,30 +158,30 @@ bool runTrap1(SDL_Window* window, SDL_Renderer* renderer,Uint32 gameStartTime, b
 				}
 			}
 
-			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
-			{
-				// Shoot bullet toward mouse
-				int mx, my;
-				SDL_GetMouseState(&mx, &my);
+			// if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT)
+			// {
+			// 	// Shoot bullet toward mouse
+			// 	int mx, my;
+			// 	SDL_GetMouseState(&mx, &my);
 
-				int centerX = gengar.charRect.x + gengar.charRect.w / 2;
-				int centerY = gengar.charRect.y + gengar.charRect.h / 2;
+			// 	int centerX = gengar.charRect.x + gengar.charRect.w / 2;
+			// 	int centerY = gengar.charRect.y + gengar.charRect.h / 2;
 
-				double angle = atan2(my - centerY, mx - centerX);
-				float speed = 1.5f;
+			// 	double angle = atan2(my - centerY, mx - centerX);
+			// 	float speed = 1.5f;
 
-				Bullet b;
-				b.x = centerX;
-				b.y = centerY;
-				b.vx = cos(angle) * speed;
-				b.vy = sin(angle) * speed;
-				b.rect.w = 50;
-				b.rect.h = 50;
-				b.rect.x = b.x;
-				b.rect.y = b.y;
+			// 	Bullet b;
+			// 	b.x = centerX;
+			// 	b.y = centerY;
+			// 	b.vx = cos(angle) * speed;
+			// 	b.vy = sin(angle) * speed;
+			// 	b.rect.w = 50;
+			// 	b.rect.h = 50;
+			// 	b.rect.x = b.x;
+			// 	b.rect.y = b.y;
 
-				bullets.push_back(b);
-			}
+			// 	bullets.push_back(b);
+			// }
 		}
 		// Check collision between Gengar and Dark Gengar
 		if (gengar.show && darkGengar.show &&
@@ -241,28 +241,28 @@ bool runTrap1(SDL_Window* window, SDL_Renderer* renderer,Uint32 gameStartTime, b
 			SDL_RenderCopy(renderer, texDarkGengar, NULL, &darkGengar.charRect);
 
 
-		for (auto& b : bullets)
-		{
-			b.x += b.vx;
-			b.y += b.vy;
-			b.rect.x = static_cast<int>(b.x);
-			b.rect.y = static_cast<int>(b.y);
-			SDL_RenderCopy(renderer, texShadowBall, NULL, &b.rect);
-		}
+		// for (auto& b : bullets)
+		// {
+		// 	b.x += b.vx;
+		// 	b.y += b.vy;
+		// 	b.rect.x = static_cast<int>(b.x);
+		// 	b.rect.y = static_cast<int>(b.y);
+		// 	SDL_RenderCopy(renderer, texShadowBall, NULL, &b.rect);
+		// }
 
-		for (auto it = bullets.begin(); it != bullets.end(); )
-		{
-			if (SDL_HasIntersection(&it->rect, &darkGengar.charRect) && darkGengar.show == true)
-			{
-				bullets.erase(it);
-				gengar.health--;
-				if (gengar.health <= 0)
-				{
-					gengar.show = false;
-				}
-			}
-			else it++;
-		}
+		// for (auto it = bullets.begin(); it != bullets.end(); )
+		// {
+		// 	if (SDL_HasIntersection(&it->rect, &darkGengar.charRect) && darkGengar.show == true)
+		// 	{
+		// 		bullets.erase(it);
+		// 		gengar.health--;
+		// 		if (gengar.health <= 0)
+		// 		{
+		// 			gengar.show = false;
+		// 		}
+		// 	}
+		// 	else it++;
+		// }
 
 		int gx = gengar.charRect.x / tilesize; //col
 		int gy = gengar.charRect.y / tilesize; //row
