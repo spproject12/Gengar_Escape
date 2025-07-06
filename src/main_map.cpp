@@ -74,10 +74,6 @@ int RoomGrid[23][23] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-
-
-
-
 vector<SDL_FRect> walls;
 
 //structures
