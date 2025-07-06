@@ -121,7 +121,7 @@ bool loadDoorTextures(SDL_Renderer* ren) {
 //game function
 
 bool runTrap4(SDL_Window* window, SDL_Renderer* ren,Uint32 gameStartTime, bool timerRunning) {
-        
+
 	//refresh games on each entry
 	bool hasGem[GRID_H][GRID_W];
 	for (int y = 0; y < GRID_H; ++y)
@@ -299,7 +299,7 @@ bool runTrap4(SDL_Window* window, SDL_Renderer* ren,Uint32 gameStartTime, bool t
 				}
 			}
 		}
-        
+
 		SDL_Rect gRect{ gx * TILE_SIZE, gy * TILE_SIZE - 10, TILE_SIZE, TILE_SIZE };
 
 		if (ballsActive) {
@@ -357,7 +357,7 @@ bool runTrap4(SDL_Window* window, SDL_Renderer* ren,Uint32 gameStartTime, bool t
 					SDL_RenderCopy(ren, spikeTex, nullptr, &tileRect);
 				}
 			}
-		
+
 		SDL_Rect doorRect{ (GRID_W - 1)*TILE_SIZE, (GRID_H - 1)*TILE_SIZE, TILE_SIZE, TILE_SIZE };
 		SDL_Texture* toDraw = doorTextures[0];
 		if (doorAnimating) toDraw = doorTextures[doorFrame];
@@ -396,9 +396,9 @@ bool runTrap4(SDL_Window* window, SDL_Renderer* ren,Uint32 gameStartTime, bool t
 					gemRect.y = y * TILE_SIZE + (TILE_SIZE - gemRect.h)/2 ;
 					SDL_RenderCopy(ren, texGengarite, nullptr, &gemRect);
 				}
-        
-        //condition to show time on screen in the trap rooms too.It is common in every trap room and main map
-        
+
+		//condition to show time on screen in the trap rooms too.It is common in every trap room and main map
+
 		if (timerRunning) {
 			Uint32 now = SDL_GetTicks();
 			Uint32 elapsed = now - gameStartTime;
@@ -431,7 +431,7 @@ bool runTrap4(SDL_Window* window, SDL_Renderer* ren,Uint32 gameStartTime, bool t
 	SDL_DestroyTexture(texFullSpike);
 	SDL_DestroyTexture(texGengar);
 	SDL_DestroyTexture(texGengarite);
-    //destroying animation textures
+	//destroying animation textures
 	for (int i = 0; i < 6; i++) SDL_DestroyTexture(spikeBallTextures[i]);
 	for (int i = 0; i < 4; i++) SDL_DestroyTexture(doorTextures[i]);
 	// Do NOT destroy renderer or window.

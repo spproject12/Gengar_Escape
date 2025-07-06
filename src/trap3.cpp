@@ -192,9 +192,9 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 	SDL_Texture* texDoorRight = loadTexture(ren, "assets/rightdoor.png");
 	SDL_Texture* texOpenDoor  = loadTexture(ren, "assets/opendoor.png");
 	SDL_Texture* puzzleSetsImgArr[NUM_SETS][PUZZLES_PER_SET];
-                 texStone = loadTexture(ren, "assets/stone.png");
-	             font     = TTF_OpenFont("font.ttf", 32);
-	
+	texStone = loadTexture(ren, "assets/stone.png");
+	font     = TTF_OpenFont("font.ttf", 32);
+
 	// We will load 24 puzzle images:(using array to avoid 24 lines of code)
 
 	string setPrefixes[NUM_SETS] = { "assets/puzzleA", "assets/puzzleB", "assets/puzzleC", "assets/puzzleD" };
@@ -207,7 +207,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 		}
 	}
 
-	
+
 
 	// ------------------------ Initialize Puzzle Answer Sets ------------------
 	//   For each set (A, B, C, D), we define an array of 6 answer strings.
@@ -325,7 +325,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 	puzzle6Scroll    = 0;
 	puzzle6Wrong     = false;
 	puzzle6Col       = -1;
-	
+
 
 	while (running) {
 		// ------------------------Event Handling -------------------------
@@ -668,14 +668,14 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                                                                                                 Delayed Fireball Spawn                                                                                                                              
+		//                                                                                                 Delayed Fireball Spawn
 		// If we queued fireballs and the designated delay has passed, spawn them.
 		if (fireballQueued && SDL_GetTicks() - fireballTriggerTime >= FIREBALL_DELAY) {
 			spawnFireballs();
 			fireballQueued = false;
 		}
 
-		//                                                                                                 Move Fireballs & Handle Collisions                                                                  
+		//                                                                                                 Move Fireballs & Handle Collisions
 		Uint32 curTick = SDL_GetTicks();
 		float delta    = (curTick - lastTick) / 1000.0f;  // Delta time in seconds
 		lastTick       = curTick;
@@ -716,7 +716,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                                                                                                                                              Rendering                                                                                                                                                       
+		//                                                                                                                                              Rendering
 		SDL_RenderClear(ren);
 
 		// Draw the entire tilemap row by row, column by column
@@ -764,7 +764,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 		}
 
 
-		//                           Draw Stones                                                                                                                                                                                                                                                                
+		//                           Draw Stones
 		// Each stone is 20C20 pixels, centered in its 64C64 tile
 		for (int i = 0; i < totalStones; i++) {
 			if (!stoneCollected[i]) {
@@ -778,7 +778,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                           Draw Fireballs                                                                                                                                                                                                                                            
+		//                           Draw Fireballs
 		if (fireballsActive) {
 			for (auto &f : fireballs) {
 				if (!f.active) continue;
@@ -787,7 +787,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                           Draw Player                                                                                                                                                                                                                                                                
+		//                           Draw Player
 		// Only draw the player if they are alive and no puzzle overlay blocks them
 		bool overlayBlocksPlayer =
 		    (currentPuzzleIdx >= 0 && currentPuzzleIdx < 4 && !puzzleMinimized) ||
@@ -798,7 +798,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			SDL_RenderCopy(ren, texGengar, nullptr, &pr);
 		}
 
-		//                           Draw Puzzle 1b  4 Overlay                                                                                                                                                                                                    
+		//                           Draw Puzzle 1b  4 Overlay
 		// If one of puzzles 1b  4 is active (currentPuzzleIdx 0..3) and not minimized,
 		// draw a semi transparent black rectangle over the whole screen, then
 		// draw the puzzle image at the top 2/3 of the screen, and the input box below.
@@ -869,7 +869,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                           Draw Puzzle 5 Overlay                                                                                                                                                                                                              
+		//                           Draw Puzzle 5 Overlay
 		// If Puzzle 5 (index 4) is active and not minimized, draw similarly:
 		if (currentPuzzleIdx == 4 && !puzzle5Minimized) {
 			// Dim background
@@ -936,7 +936,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 			}
 		}
 
-		//                           Draw Puzzle 6 Overlay                                                                                                                                                                                                              
+		//                           Draw Puzzle 6 Overlay
 		// If Puzzle 6 (index 5) is active and not minimized, do the same pattern.
 		if (currentPuzzleIdx == 5 && !puzzle6Minimized) {
 			// Dim background
@@ -1049,7 +1049,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 		SDL_Delay(16);
 	}
 
-	
+
 	SDL_DestroyTexture(texWall);
 	SDL_DestroyTexture(texLaser);
 	SDL_DestroyTexture(texStatue);
@@ -1067,7 +1067,7 @@ bool runTrap3(SDL_Window* win, SDL_Renderer* ren,Uint32 gameStartTime, bool time
 	TTF_CloseFont(font);
 
 
-	
+
 	return readyToExit;
 }
 
