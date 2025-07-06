@@ -1,0 +1,140 @@
+Ariba:
+---------------
+Enemy
+ui pop up
+ui button
+Trap-1
+collision of bullet and enemy 
+ui position and calculation
+
+feature------
+mirror movement 
+randomize switch and door
+active and inactive switch 
+magma popup 
+collectables 
+collision
+respawn
+
+
+Ohin:
+--------------------------
+Enemy 
+ui popup
+buttons
+Trap-2
+camera(main map)
+collision of wall (main map)
+implementation of ui
+
+feature---------
+collectables 
+collision
+respawn
+different type of tiles with different features
+maze
+
+
+Taeen:
+------------------------
+Final boss
+portal attach
+leaderboard
+trap 3
+time
+
+feature--------
+electroball spawn 
+riddles 
+text input 
+randomization
+cursor movement
+collision
+respawn 
+collectables
+
+Sara:
+---------------------
+music 
+map design 
+trap-4
+ammunation collection
+ui design and graphics 
+
+feature---------
+collision 
+respawn
+animation  of three step tile 
+collectables
+timing in animation 
+
+possible questions:
+--------------------------
+
+why escape : escape games include  brainstorming and logical thinking, thrill, engagement ,fun to play, one of the top gaming genres 
+motivation :
+-->familiarity of pokemon
+-->emotionally moved by gengar's backstory (why gengar)
+-->bringing the story of gengar's suffering to everyone and let everyone know about this underrated pokemon despites its looks.
+
+
+
+Game brief:
+-----------------
+----short story :
+
+Gengar Escape: Whisper of Forbidden Memories is a story-driven adventure where you step into the shadowy world of Gengar, once the most cherished Pokemon of his trainer. After a mysterious encounter in the Old Chateau, the trainer and Gengar captured a powerful Dragapult,unaware of the cold darkness that came with it. Manipulated by Dragapults sinister influence, the trainer slowly turned away from Gengar, eventually abandoning him in the legendary Castle of Lost Souls, hidden within the ancient Ruins of Alph.\nAlone and surrounded by the whispers of forgotten spirits, Gengar must navigate four perilous trap rooms of the castle.Each chamber is a physical manifestation of his deepest emotions: guilt , loneliness, confusion, and pain.\n Along the way, Gengar confronts puzzles, enemies, and ultimately, a monstrous form born from all his pain, inferiority, and sorrow, now standing between him and freedom.To escape, Gengar must conquer his worst fears, overcome the traps of his own heart, and uncover the truth behind his betrayal. Will he remain a lost whisper among the forsaken, or will he rise above the shadows to reclaim his destiny? The question persists.
+
+----goal:
+
+solve all four trap rooms and defeat final boss within shortest possible time to stay on top of the leaderboard
+
+-----feature:
+shooting 
+leaderboard 
+puzzles as sub games
+each having different features implemented by everyone 
+
+
+
+
+
+
+
+
+
+
+
+main map:
+fixed path enemy 
+following enemy 
+static+ shooting enemy 
+reflection movement+shooting final boss
+ammunation 
+portal (trap room window pop up)
+collision 
+respawn 
+health 
+time 
+2D array based map designing 
+
+ui:
+
+clickable buttons 
+name input 
+cursor movement 
+music 
+pop ups
+toggle button (sound)
+leaderboard 
+
+
+
+----library used:
+sdl2 mixer 
+sdl2 ttf
+sdl2 image 
+sdl2 get ticks 
+
+
+
