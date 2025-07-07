@@ -55,15 +55,16 @@ void addLeaderboardEntry(const string& name, int timeSeconds);
 
 //structures
 struct LeaderboardEntry {
-	string name;
-	int timeSeconds;  // Elapsed time in seconds
-
-	// For sorting (less time is better)
-	bool operator<(const LeaderboardEntry& other) const {
-		return timeSeconds < other.timeSeconds;
-	} 
-    // CHANGE THIS PORTION
+    string name;
+    int timeSeconds;  // Elapsed time in seconds
 };
+
+vector<LeaderboardEntry> leaderboard;
+
+bool leaderboardEntryLess(const LeaderboardEntry& a, const LeaderboardEntry& b) {
+    return a.timeSeconds < b.timeSeconds;
+}
+
 
 struct Buttons {
 	SDL_Rect button;
@@ -71,8 +72,7 @@ struct Buttons {
 	bool visible = true;
 };
 
-//vectors
-vector<LeaderboardEntry> leaderboard;
+
 vector<Buttons> MainButtons =
 {
 	{{200, 400, buttonWidth, buttonHeight}, "Play", true},
@@ -229,34 +229,35 @@ string showNameInput(SDL_Window* window, SDL_Renderer* renderer) {
 	return input;
 }
 
-void loadLeaderboard(const string& filename) {
-	leaderboard.clear();
-	ifstream fin(filename);
-	if (!fin) return; // no file yet, fine
-	string name;
-	int time;
-	while (fin >> name >> time) {
-		leaderboard.push_back({name, time});
-	}
-	fin.close();
-	sort(leaderboard.begin(), leaderboard.end());
+void loadLeaderboard(const char* filename) {
+    leaderboard.clear();
+    FILE* fin = fopen(filename, "r");
+    if (!fin) return;
+    char cname[64];
+    int time;
+    while (fscanf(fin, "%63s %d", cname, &time) == 2) {
+        leaderboard.push_back({string(cname), time});
+    }
+    fclose(fin);
+    std::sort(leaderboard.begin(), leaderboard.end(), leaderboardEntryLess);
 }
 
 // --- Save leaderboard to file ---
-void saveLeaderboard(const string& filename) {
-	ofstream fout(filename);
-	for (const auto& entry : leaderboard) {
-		fout << entry.name << " " << entry.timeSeconds << "\n";
-	}
-	fout.close();
+void saveLeaderboard(const char* filename) {
+    FILE* fout = fopen(filename, "w");
+    if (!fout) return;
+    for (const auto& entry : leaderboard) {
+        fprintf(fout, "%s %d\n", entry.name.c_str(), entry.timeSeconds);
+    }
+    fclose(fout);
 }
 
 // --- Add a new entry and keep best 10 ---
 void addLeaderboardEntry(const string& name, int timeSeconds) {
-	leaderboard.push_back({name, timeSeconds});
-	sort(leaderboard.begin(), leaderboard.end());
-	if (leaderboard.size() > 10) leaderboard.resize(10); // Top 10 only
-	saveLeaderboard("leaderboard.txt");
+    leaderboard.push_back({name, timeSeconds});
+    std::sort(leaderboard.begin(), leaderboard.end(), leaderboardEntryLess);
+    if (leaderboard.size() > 10) leaderboard.resize(10); // Keep only top 10
+    saveLeaderboard("leaderboard.txt");
 }
 
 
